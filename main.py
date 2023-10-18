@@ -95,7 +95,7 @@ def main(config):
                 images = data['image'].to(device)
                 labels = data['annotations'].to(device).float()
                 outputs = model(images)
-                outputs = outputs.view(-1, 10, 1)
+                outputs = outputs.view(128, 1, 1)
 
                 optimizer.zero_grad()
 
@@ -132,7 +132,7 @@ def main(config):
                 print(labels)
                 with torch.no_grad():
                     outputs = model(images)
-                outputs = outputs.view(-1, 10, 1)
+                outputs = outputs.view(128, 1, 1)
                 val_loss = emd_loss(labels, outputs)
                 batch_val_losses.append(val_loss.item())
             avg_val_loss = sum(batch_val_losses) / (len(valset) // config.val_batch_size + 1)
