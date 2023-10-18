@@ -53,6 +53,8 @@ def emd_loss(p, q, r=2):
         q: estimated distribution of shape mini_batch_size × num_classes × 1
         r: norm parameters
     """
+    print(p.shape)
+    print(q.shape)
     assert p.shape == q.shape, "Shape of the two distribution batches must be the same."
     mini_batch_size = p.shape[0]
     loss_vector = []
