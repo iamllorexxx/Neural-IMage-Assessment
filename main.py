@@ -95,7 +95,7 @@ def main(config):
                 images = data['image'].to(device)
                 labels = data['annotations'].to(device).float()
                 outputs = model(images)
-                outputs = outputs.view(-1, 10, 1)
+                outputs = outputs.view(-1, 1, 1)
 
                 optimizer.zero_grad()
 
@@ -129,6 +129,7 @@ def main(config):
             for data in val_loader:
                 images = data['image'].to(device)
                 labels = data['annotations'].to(device).float()
+                print(labels)
                 with torch.no_grad():
                     outputs = model(images)
                 outputs = outputs.view(-1, 10, 1)
